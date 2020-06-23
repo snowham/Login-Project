@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>Login Page</title>
+    </head>
+    <body>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flashes">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        <div class="">
+            <p>
+                <a href="/home">Home</a>
+                <br>
+                <a href="/user">Your Account</a>
+                <br>
+                <a href="/logout">Logout</a>
+            </p>
+        </div>
+
+        <div class="login">
+            <h1>Login</h1>
+            <form action="" method="post">
+                <input type="text" placeholder="Username" name="username" value="{{ request.form['username'] }}">
+                <input type="password" placeholder="Password" name="password" value="{{ request.form['password'] }}">
+                <input type="submit" value="Login">
+            </form>
+            {% if error %}
+                <p class="error"><strong>Error:</strong> {{ error }}</p>
+            {% endif %}
+        </div>
+    </body>
+</html>

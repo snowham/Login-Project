@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Your Page</title>
+        <link rel="stylesheet" href="/css/style.css">
+    </head>
+    <body id='page'>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flashes">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        <div class="">
+            <p>
+                <a href="/home">Home</a>
+                <br>
+                <a href="/logout">Logout</a>
+            </p>
+        </div>
+
+        <h1 id="title-heading">{{ username }}</h1>
+
+        <h3>Do you want to change your username?</h3>
+        <form method="post">
+            <input type="password" placeholder="Password" name="password" value="{{ request.form['password'] }}">
+            <br>
+            <input type="text" placeholder="New Username" name="newUsername" value="{{ request.form['newUsername'] }}">
+            <br>
+            <input type="submit" value="Change Username">
+        </form>
+        {% if changeUsernameError %}
+            <p class="error"><strong>Error:</strong> Either your new username input is empty, another user owns it, or you typed in the wrong password. Try again.</p>
+        {% endif %}
+        <br>
+        <br>
+        <h3>What's your favorite Twitter hashtag?</h3>
+        <form method="post">
+            <label for="hashtag">#</label>
+            <input type="text" name="hashtag" value="{{ request.form['hashtag'] }}">
+            <input type="submit" value="Confirm Hashtag">
+        </form>
+        {% if twitterError %}
+            <p class="error"><strong>Error:</strong> Please enter a valid hashtag.</p>
+        {% endif %}
+        {% if tweets %}
+            <ul id="tweets">
+                {% for tweet in tweets %}
+                    <li>{{ tweet }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </body>
+</html>
