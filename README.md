@@ -11,5 +11,4 @@ A flask webapp containing:
 - A home page
 	* Some html and css
 - The ability to logout
-	* Yes.
 - Navigation on the top of each page
